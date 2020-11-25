@@ -2,7 +2,6 @@ import 'package:BridgeLive/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'placeholder_widget.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -10,12 +9,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int _currentIndex =0;   //track currently selected Tab
-  final List<Widget> _children=[
-    PlaceholderWidget(Colors.white),
-    PlaceholderWidget(Colors.orange),
-    PlaceholderWidget(Colors.green)
-  ];   //list of widgets need to be rendered while selected
 
   @override
   Widget build(BuildContext context) {
@@ -45,34 +38,17 @@ class _HomePageState extends State<HomePage> {
           ),
                   ],
     ),
-    body: _children[_currentIndex],
-    bottomNavigationBar: BottomNavigationBar(
-      onTap: onTabTapped,
-      currentIndex: _currentIndex,
-      items: [
-        BottomNavigationBarItem(
-          icon: new Icon(Icons.home_outlined),
-          label: 'Home', 
-        ),
-        BottomNavigationBarItem(
-          icon: new Icon(Icons.article_outlined),
-          label: 'Courses',
-        ),
-        BottomNavigationBarItem(
-          icon: new Icon(Icons.menu),
-          label: 'More',
-        )
+    body: CustomScrollView(
+      slivers: <Widget>[
+        SliverAppBar(
+
+          ),
+
       ],
-    ),
+    ),    
   );
   }
 
-//This will trigger Build method with the state passed to it
-  void onTabTapped(int index){
-    setState(() {
-    });
-      _currentIndex=index;
-  }
 }
 
 Widget searchField(){
